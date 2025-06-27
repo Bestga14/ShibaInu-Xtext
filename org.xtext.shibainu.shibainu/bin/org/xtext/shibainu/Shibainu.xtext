@@ -1,0 +1,33 @@
+grammar org.xtext.shibainu.Shibainu with org.eclipse.xtext.common.Terminals
+
+generate shibainu "http://www.xtext.org/shibainu/Shibainu"
+
+Model:
+    statements+=Statement*
+;
+
+Statement:
+    VariableDeclaration
+  | Print
+  | Conditional
+;
+
+VariableDeclaration:
+    'henka' name=ID '=' value=INT
+;
+
+Print:
+    'insatsu' message=STRING
+;
+
+Conditional:
+    'moshi' comparison=Comparison ':' statement=Statement
+;
+
+Comparison:
+    left=ID operator=Operator right=INT
+;
+
+enum Operator:
+    EQ='==' | NE='!=' | LT='<' | GT='>'
+;
